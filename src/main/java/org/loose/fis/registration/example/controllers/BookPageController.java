@@ -20,7 +20,7 @@ public class BookPageController {
         book = b;
 
         StackPane layout = new StackPane();
-        Image wallpaper_image = new Image("https://bgwall.net/wp-content/uploads/2014/09/books-at-the-library-wallpaper-picture.jpg");
+        Image wallpaper_image = new Image("books.jpg");
         BackgroundImage bi = new BackgroundImage(wallpaper_image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background background = new Background(bi);

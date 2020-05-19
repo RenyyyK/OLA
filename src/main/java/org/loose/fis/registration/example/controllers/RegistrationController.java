@@ -11,21 +11,27 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.loose.fis.registration.example.Main;
 import org.loose.fis.registration.example.exceptions.UserDoesNotExistException;
 import org.loose.fis.registration.example.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.registration.example.exceptions.WrongPasswordException;
 import org.loose.fis.registration.example.services.UserService;
 
+import java.io.IOException;
+
 public class RegistrationController {
+    Stage stage = Main.getStage();
 
     @FXML
     private Text registrationMessage;
-    @FXML
-    private Text SignInMessage;
+   // @FXML
+    //private Text SignInMessage;
     @FXML
     private PasswordField passwordField;
     @FXML
     private TextField usernameField;
+    @FXML
+    private TextField fullNameField;
     @FXML
     private ChoiceBox role;
 
@@ -39,27 +45,54 @@ public class RegistrationController {
         try {
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             registrationMessage.setText("Account created successfully!");
-        } catch (UsernameAlreadyExistsException e) {
+
+            stage = Main.getStage();
+            stage.setTitle("Home Page");
+
+            Parent root;
+            String r = (String) role.getValue();
+
+            if(r.equals("Author")) {
+                root = FXMLLoader.load(getClass().getClassLoader().getResource("authorHomePage.fxml"));
+            }
+            else if(r.equals("Reader")){
+                root = FXMLLoader.load(getClass().getClassLoader().getResource("readerHomePage.fxml"));
+            }
+            else {
+                root = null;
+            }
+
+            StackPane layout = new StackPane();
+            Image wallpaper_image = new Image("books.jpg");
+            BackgroundImage bi = new BackgroundImage(wallpaper_image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+            Background background = new Background(bi);
+            layout.setBackground(background);
+            layout.getChildren().add(root);
+
+            stage.setScene(new Scene(layout, 500, 500));
+            stage.show();
+
+        } catch (UsernameAlreadyExistsException | IOException e) {
             registrationMessage.setText(e.getMessage());
         }
     }
 
     @FXML
     public void handleSignInAction() throws Exception{
-        Stage signInStage = new Stage();
-        signInStage.setTitle("Sign In");
+        stage.setTitle("Sign In");
 
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("signIn.fxml"));
 
         StackPane layout = new StackPane();
-        Image wallpaper_image = new Image("https://bgwall.net/wp-content/uploads/2014/09/books-at-the-library-wallpaper-picture.jpg");
+        Image wallpaper_image = new Image("books.jpg");
         BackgroundImage bi = new BackgroundImage(wallpaper_image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background background = new Background(bi);
         layout.setBackground(background);
         layout.getChildren().add(root);
 
-        signInStage.setScene(new Scene(layout, 500, 500));
-        signInStage.show();
+        stage.setScene(new Scene(layout, 500, 500));
+        stage.show();
     }
 }
