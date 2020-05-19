@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import org.loose.fis.registration.example.Main;
 import org.loose.fis.registration.example.classes.Author;
 import org.loose.fis.registration.example.classes.Book;
+import org.loose.fis.registration.example.services.BookService;
 
 import java.util.ArrayList;
 
@@ -139,5 +140,23 @@ public class ReaderHomePageController {
 
     public void followAuthor(Author a){
         if(!followedAuthors.contains(a)) followedAuthors.add(a);
+    }
+
+    public void searchBook(){
+        String title = searchForBook.getText();
+        Book b = BookService.searchBook(title);
+        ListView<Book> book = new ListView<>();
+        Scene s = new Scene(book, 500, 500);
+        stage.setScene(s);
+        stage.show();
+    }
+
+    public void searchAuthor(){
+        String name = searchForAuthor.getText();
+        Author a = BookService.searchAuthorByName(name);
+        ListView<Author> author = new ListView<>();
+        Scene s = new Scene(author, 500, 500);
+        stage.setScene(s);
+        stage.show();
     }
 }

@@ -219,4 +219,13 @@ public class BookService {
                 return author;
         return null;
     }
+
+    public static Author searchAuthorByName(String name) //throws AuthorDoesNotExistException
+    {
+        //checkAuthorDoesNotExist(name);
+        for(Author author : authors)
+            if(author.getName().equals(name))
+                return author;
+        return null;
+    }
 }
