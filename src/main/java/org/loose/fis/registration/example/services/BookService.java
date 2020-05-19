@@ -22,47 +22,50 @@ import java.util.List;
 import java.util.Objects;
 
 public class BookService {
-    private static List<Book> books;
     private static List<Author> authors;
-    private static final Path BOOKSS_PATH = FileSystemService.getPathToFile("config", "books.json");
+    private static final Path BOOKS_PATH = FileSystemService.getPathToFile("config", "books.json");
 
-    public static void loadBooksFromFile() throws IOException {
+    public static void loadAuthorsFromFile() throws IOException {
 
-        if (!Files.exists(BOOKSS_PATH)) {
-            FileUtils.copyURLToFile(BookService.class.getClassLoader().getResource("books.json"), BOOKSS_PATH.toFile());
+        if (!Files.exists(BOOKS_PATH)) {
+            FileUtils.copyURLToFile(BookService.class.getClassLoader().getResource("books.json"), BOOKS_PATH.toFile());
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        books = objectMapper.readValue(BOOKSS_PATH.toFile(), new TypeReference<List<Book>>() {
+        authors = objectMapper.readValue(BOOKS_PATH.toFile(), new TypeReference<List<Author>>() {
         });
     }
 
-    public static void  addBook(String title, Author author, Image cover, Text description, File file, ArrayList<String> comments) throws BookAlreadyExistsException
-    {
-        checkBookDoesNotAlreadyExists(title);
-        books.add(new Book(title, author, cover, description, file, comments));
+    private static void persistAuthors() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(BOOKS_PATH.toFile(), authors);
+        } catch (IOException e) {
+            throw new CouldNotWriteUsersException();
+        }
     }
 
     private static void checkBookDoesNotAlreadyExists(String title) throws BookAlreadyExistsException
     {
-        for(Book book : books)
+        for(Author author : authors)
         {
-            if (Objects.equals(title, book.getTitle()))
-                throw new BookAlreadyExistsException(title);
+            ArrayList<Book> books=author.getBooks();
+            for(Book book : books)
+            {
+                if (Objects.equals(title, book.getTitle()))
+                    throw new BookAlreadyExistsException(title);
+            }
         }
     }
 
-    public static void searchBook(String title, Author name) throws AuthorDoesNotExistException, BookDoesNotExistException
+    private static void checkAuthorDoesNotAlreadyExists(Author name) throws AuthorAlreadyExistsException
     {
         for(Author author : authors)
-            if(!Objects.equals(author, name.getName()))
-                throw new AuthorDoesNotExistException(name);
-
-        for(Book book : books)
         {
-            if(!Objects.equals(title, book.getTitle()))
-                throw new BookDoesNotExistException(title);
+            if (Objects.equals(name, author.getName()))
+                throw new AuthorAlreadyExistsException(name);
         }
     }
+
 }
