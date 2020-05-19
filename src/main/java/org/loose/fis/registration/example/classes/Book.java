@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Book {
-    private String Title;
+    private String title;
     private Author author;
     private Image cover;
     private Text description;
@@ -30,19 +30,65 @@ public class Book {
         this.comments = comments;
     }
 
-    public Book(String title, Image cover) {
-        Title = title;
+    public Book(String title, Author author) {
+        title = title;
+        this.author=author;
+    }
+
+    public Book(String title, Author author, Image cover) {
+        title = title;
+        this.author=author;
         setCover(cover);
+    }
+
+    public Book(String title, Author author, Text description) {
+        title = title;
+        this.author=author;
+        this.description=description;
+    }
+    public Book(String title, Author author, File file) {
+        title = title;
+        this.author=author;
+        this.file=file;
+    }
+
+    public Book(String title, Author author, Image cover, Text description) {
+        title = title;
+        this.author=author;
+        setCover(cover);
+        this.description=description;
+    }
+
+    public Book(String title, Author author, Image cover, File file) {
+        title = title;
+        this.author=author;
+        setCover(cover);
+        this.file=file;
+    }
+
+    public Book(String title, Author author, Text description, File file) {
+        title = title;
+        this.author=author;
+        this.description=description;
+        this.file=file;
+    }
+
+    public Book(String title, Author author, Image cover, Text description, File file) {
+        title = title;
+        this.author=author;
+        setCover(cover);
+        this.description=description;
+        this.file=file;
     }
 
     public Book(){}
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        title = title;
     }
 
     public Author getAuthor() {
