@@ -12,15 +12,18 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.loose.fis.registration.example.Main;
+import org.loose.fis.registration.example.classes.Author;
 import org.loose.fis.registration.example.exceptions.UserDoesNotExistException;
 import org.loose.fis.registration.example.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.registration.example.exceptions.WrongPasswordException;
+import org.loose.fis.registration.example.model.User;
 import org.loose.fis.registration.example.services.UserService;
 
 import java.io.IOException;
 
 public class RegistrationController {
     Stage stage = Main.getStage();
+    User user;
 
     @FXML
     private Text registrationMessage;
@@ -54,9 +57,11 @@ public class RegistrationController {
 
             if(r.equals("Author")) {
                 root = FXMLLoader.load(getClass().getClassLoader().getResource("authorHomePage.fxml"));
+                user  = new User(usernameField.getText(), passwordField.getText(), (String)role.getValue());
             }
             else if(r.equals("Reader")){
                 root = FXMLLoader.load(getClass().getClassLoader().getResource("readerHomePage.fxml"));
+                user  = new User(usernameField.getText(), passwordField.getText(), (String)role.getValue());
             }
             else {
                 root = null;
@@ -94,5 +99,9 @@ public class RegistrationController {
 
         stage.setScene(new Scene(layout, 500, 500));
         stage.show();
+    }
+
+    public User getUser(){
+        return user;
     }
 }

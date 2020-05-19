@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Author {
     private String name;
     public ArrayList<Book> books;
+    public ArrayList<String> posts;
 
     public Author(String name) {
         this.name = name;
         books = new ArrayList<Book>();
+        posts = new ArrayList<String>();
     }
 
     public Author(){

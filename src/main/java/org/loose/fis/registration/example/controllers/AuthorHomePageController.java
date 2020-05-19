@@ -8,13 +8,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.loose.fis.registration.example.Main;
+import org.loose.fis.registration.example.classes.Author;
 import org.loose.fis.registration.example.classes.Book;
+import org.loose.fis.registration.example.model.User;
 
 import java.util.ArrayList;
 
 public class AuthorHomePageController extends ReaderHomePageController{
-    private ArrayList<Book> myBooks;
-    private ArrayList<String> posts;
+    ArrayList<Book> myBooks;
+    ArrayList<String> posts;
 
     public AuthorHomePageController() {
         super();
