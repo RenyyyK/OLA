@@ -1,11 +1,14 @@
 package org.loose.fis.registration.example.controllers;
 
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.loose.fis.registration.example.Main;
 import org.loose.fis.registration.example.classes.Author;
@@ -15,6 +18,11 @@ import java.util.ArrayList;
 
 public class ReaderHomePageController {
     Stage stage = Main.getStage();
+
+    @FXML
+    private TextField searchForBook;
+    @FXML
+    private TextField searchForAuthor;
 
     private ArrayList<Book> Favorites;
     private ArrayList<Book> CurrentlyReading;
