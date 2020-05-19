@@ -46,7 +46,7 @@ public class BookService {
         }
     }
 
-    private static void checkBookDoesNotAlreadyExists(String title) throws BookAlreadyExistsException
+    private static void checkBooktAlreadyExists(String title) throws BookAlreadyExistsException
     {
         for(Author author : authors)
         {
@@ -59,7 +59,7 @@ public class BookService {
         }
     }
 
-    private static void checkAuthorDoesNotAlreadyExists(Author name) throws AuthorAlreadyExistsException
+    private static void checkAuthorAlreadyExists(Author name) throws AuthorAlreadyExistsException
     {
         for(Author author : authors)
         {
@@ -68,4 +68,121 @@ public class BookService {
         }
     }
 
+    private static void checkBookDoesNotExist(String title) throws BookDoesNotExistException
+    {
+        int count=0;
+        for(Author author : authors)
+        {
+            ArrayList<Book> books=author.getBooks();
+            for(Book book : books)
+            {
+                if (Objects.equals(title, book.getTitle()))
+                    count++;
+            }
+        }
+        if(count==0)
+            throw new BookDoesNotExistException(title);
+    }
+
+    private static void checkAuthorDoesNotExist(Author name) throws AuthorDoesNotExistException
+    {
+        int count=0;
+        for(Author author : authors)
+        {
+            if (Objects.equals(name, author.getName()))
+                count++;
+        }
+        if(count==0)
+            throw new AuthorDoesNotExistException(name);
+    }
+
+    public static void  addBook(String title, Author author) throws BookAlreadyExistsException
+    {
+        checkBooktAlreadyExists(title);
+        author.getBooks().add(new Book(title, author));
+    }
+
+    public static void  addBook(String title, Author author, Image cover) throws BookAlreadyExistsException
+    {
+        checkBooktAlreadyExists(title);
+        author.getBooks().add(new Book(title, author, cover));
+    }
+
+    public static void  addBook(String title, Author author, Text description) throws BookAlreadyExistsException
+    {
+        checkBooktAlreadyExists(title);
+        author.getBooks().add(new Book(title, author, description));
+    }
+
+    public static void  addBook(String title, Author author, File file) throws BookAlreadyExistsException
+    {
+        checkBooktAlreadyExists(title);
+        author.getBooks().add(new Book(title, author, file));
+    }
+
+    public static void  addBook(String title, Author author, Image cover, Text description) throws BookAlreadyExistsException
+    {
+        checkBooktAlreadyExists(title);
+        author.getBooks().add(new Book(title, author, cover, description));
+    }
+
+    public static void  addBook(String title, Author author, Image cover, File file) throws BookAlreadyExistsException
+    {
+        checkBooktAlreadyExists(title);
+        author.getBooks().add(new Book(title, author, cover, file));
+    }
+
+    public static void  addBook(String title, Author author, Text description, File file) throws BookAlreadyExistsException
+    {
+        checkBooktAlreadyExists(title);
+        author.getBooks().add(new Book(title, author, description, file));
+    }
+
+    public static void  addBook(String title, Author author, Image cover, Text description, File file) throws BookAlreadyExistsException
+    {
+        checkBooktAlreadyExists(title);
+        author.getBooks().add(new Book(title, author, cover, description, file));
+    }
+
+    public static void addAuthor(Author author) throws AuthorAlreadyExistsException
+    {
+        checkAuthorAlreadyExists(author);
+        authors.add(author);
+    }
+
+    public static void deleteBook(String title, Author author) throws BookDoesNotExistException
+    {
+        checkBookDoesNotExist(title);
+        author.getBooks().remove(new Book(title, author));
+    }
+
+    public static void deleteBook(String title) throws  BookDoesNotExistException
+    {
+        checkBookDoesNotExist(title);
+        for(Author author : authors)
+        {
+            ArrayList<Book> books=author.getBooks();
+            for(Book )
+
+
+            Book b=new Book(title, author)
+            if(books.contains())
+            books.remove(new Book());
+        }
+    }
+
+
+
+    public static void searchBook(String title, Author name) throws AuthorDoesNotExistException, BookDoesNotExistException
+    {
+        for(Author author : authors)
+            if(!Objects.equals(author, name.getName()))
+                throw new AuthorDoesNotExistException(name);
+
+        for(Book book : books)
+        {
+            if(!Objects.equals(title, book.getTitle()))
+                throw new BookDoesNotExistException(title);
+        }
+    }
 }

@@ -30,18 +30,55 @@ public class Book {
         this.comments = comments;
     }
 
-    public Book(String title, Image cover) {
+    public Book(String title, Author author) {
         title = title;
+        this.author=author;
+    }
+
+    public Book(String title, Author author, Image cover) {
+        title = title;
+        this.author=author;
         setCover(cover);
     }
 
-    public Book(String title, Author author, Image cover, Text description, File file, ArrayList<String> comments) {
+    public Book(String title, Author author, Text description) {
+        title = title;
+        this.author=author;
+        this.description=description;
+    }
+    public Book(String title, Author author, File file) {
+        title = title;
+        this.author=author;
+        this.file=file;
+    }
+
+    public Book(String title, Author author, Image cover, Text description) {
+        title = title;
+        this.author=author;
+        setCover(cover);
+        this.description=description;
+    }
+
+    public Book(String title, Author author, Image cover, File file) {
+        title = title;
+        this.author=author;
+        setCover(cover);
+        this.file=file;
+    }
+
+    public Book(String title, Author author, Text description, File file) {
+        title = title;
+        this.author=author;
+        this.description=description;
+        this.file=file;
+    }
+
+    public Book(String title, Author author, Image cover, Text description, File file) {
         title = title;
         this.author=author;
         setCover(cover);
         this.description=description;
         this.file=file;
-        this.comments=comments;
     }
 
     public Book(){}
