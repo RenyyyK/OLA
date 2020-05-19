@@ -7,7 +7,7 @@
 <GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" prefHeight="400" prefWidth="600"
           vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal"
           fx:controller="org.loose.fis.registration.example.controllers.RegistrationController">
-    <padding>
+   <padding>
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
     </padding>
     <Text id="title-text" text="Library Application - Register" GridPane.columnIndex="0" GridPane.columnSpan="2"
@@ -26,12 +26,16 @@
     <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
     </ChoiceBox>
 
-    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7" fill="aliceblue"/>
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+    <Label text="Please fill in your full name if you are an author!" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2" textFill="aliceblue"/>
+
+    <TextField fx:id="fullNameField" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2"/>
+
+    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="9" fill="aliceblue"/>
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8">
         <Button onAction="#handleRegisterAction" text="Register"/>
     </HBox>
 
-    <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="5">
+    <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="8">
         <Button onAction="#handleSignInAction" text="Sign In"/>
     </HBox>
 </GridPane>
