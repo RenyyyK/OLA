@@ -48,15 +48,15 @@ public class UserService {
         }
     }
 
-    public static void searchUser(String username, String password) throws UserDoesNotExistException, WrongPasswordException {
-        for(User user : users){
-            if(!Objects.equals(username, user.getUsername()))
-                throw new UserDoesNotExistException(username);
-            else{
-                if(!user.getPassword().equals(password))
+    public static User searchUser(String username, String password) throws UserDoesNotExistException, WrongPasswordException {
+        for(User u:users){
+            if(u.getUsername().equals(username)) {
+                if (!encodePassword(username, password).equals(u.getPassword()))
                     throw new WrongPasswordException(username);
+                else return u;
             }
         }
+        throw new UserDoesNotExistException(username);
     }
 
     private static void persistUsers() {

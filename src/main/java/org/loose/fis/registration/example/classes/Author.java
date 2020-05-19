@@ -31,4 +31,11 @@ public class Author {
         this.name = name;
     }
 
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
 }
