@@ -31,6 +31,12 @@ public class AuthorHomePageController extends ReaderHomePageController{
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
         }
+        Button add = new Button("Add");
+        Button delete = new Button("Delete");
+
+        list.getItems().add(add);
+        list.getItems().add(delete);
+
         Scene s = new Scene(list, 500, 500);
         stage.setScene(s);
         stage.show();
@@ -41,7 +47,13 @@ public class AuthorHomePageController extends ReaderHomePageController{
         for(String s : posts) {
             list.getItems().add(s);
         }
-        Scene s = new Scene(list, 500, 500);
+        Button add = new Button("Add");
+
+        GridPane gp = new GridPane();
+        gp.getChildren().add(list);
+        gp.getChildren().add(add);
+
+        Scene s = new Scene(gp, 500, 500);
         stage.setScene(s);
         stage.show();
     }

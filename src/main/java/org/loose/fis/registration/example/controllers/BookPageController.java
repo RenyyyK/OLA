@@ -9,26 +9,17 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.loose.fis.registration.example.Main;
 import org.loose.fis.registration.example.classes.Book;
 
 public class BookPageController {
+    Stage page = Main.getStage();
+
     public Book book;
-    public Stage page = new Stage();
     public Scene scene;
 
     public BookPageController(Book b){
         book = b;
-
-        StackPane layout = new StackPane();
-        Image wallpaper_image = new Image("books.jpg");
-        BackgroundImage bi = new BackgroundImage(wallpaper_image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background background = new Background(bi);
-        layout.setBackground(background);
-
-        scene = new Scene(layout, 500, 500);
-        this.page.setScene(scene);
-        this.page.show();
     }
 
     public void handleRead(){

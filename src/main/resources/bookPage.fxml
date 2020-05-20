@@ -15,7 +15,7 @@
 
     <ImageView>
         <image>
-            <Image fx:id="#book.getCover" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Image fx:id="cover" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
         </image>
     </ImageView>
 

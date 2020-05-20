@@ -1,6 +1,8 @@
 package org.loose.fis.registration.example.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -15,6 +17,7 @@ import org.loose.fis.registration.example.classes.Author;
 import org.loose.fis.registration.example.classes.Book;
 import org.loose.fis.registration.example.services.BookService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReaderHomePageController {
@@ -117,10 +120,12 @@ public class ReaderHomePageController {
         stage.show();
     }
 
-    public void handleAuthorsList(){
+    public void handleAuthorsList() throws IOException {
         ListView<Button> list = new ListView<Button>();
         for(Author a : followedAuthors) {
             Button button = new Button(a.getName());
+            //Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BookPage.fxml"));
+            //button.setOnAction();
             list.getItems().add(button);
         }
         Scene s = new Scene(list, 500, 500);
@@ -159,4 +164,6 @@ public class ReaderHomePageController {
         stage.setScene(s);
         stage.show();
     }
+
+    //public void openBookPage(){}
 }
