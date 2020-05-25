@@ -1,4 +1,4 @@
-package org.loose.fis.registration.example.classes;
+package ola.classes;
 
 import java.util.ArrayList;
 

@@ -1,14 +1,13 @@
-package org.loose.fis.registration.example;
+package ola;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import org.loose.fis.registration.example.services.UserService;
+import ola.services.UserService;
 
 public class Main extends Application {
     private static Stage mainStage;

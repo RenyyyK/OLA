@@ -1,4 +1,4 @@
-package org.loose.fis.registration.example.exceptions;
+package ola.exceptions;
 
 public class UserDoesNotExistException extends Exception {
 

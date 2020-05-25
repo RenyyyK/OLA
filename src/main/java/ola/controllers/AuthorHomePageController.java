@@ -1,16 +1,11 @@
-package org.loose.fis.registration.example.controllers;
+package ola.controllers;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import org.loose.fis.registration.example.Main;
-import org.loose.fis.registration.example.classes.Author;
-import org.loose.fis.registration.example.classes.Book;
-import org.loose.fis.registration.example.model.User;
+import ola.classes.Book;
 
 import java.util.ArrayList;
 

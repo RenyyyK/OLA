@@ -1,16 +1,14 @@
-package org.loose.fis.registration.example.controllers;
+package ola.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.loose.fis.registration.example.Main;
-import org.loose.fis.registration.example.classes.Book;
+import ola.Main;
+import ola.classes.Book;
 
 public class BookPageController {
     Stage page = Main.getStage();
