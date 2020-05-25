@@ -1,4 +1,4 @@
-package org.loose.fis.registration.example.services;
+package ola.services;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

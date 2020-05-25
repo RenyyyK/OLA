@@ -1,14 +1,10 @@
-package org.loose.fis.registration.example.controllers;
+package ola.controllers;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import org.loose.fis.registration.example.classes.Author;
-import org.loose.fis.registration.example.classes.Book;
-
-import java.io.IOException;
-import java.util.ArrayList;
+import ola.classes.Author;
 
 public class AuthorsProfileController {
     ReaderHomePageController r = new ReaderHomePageController();

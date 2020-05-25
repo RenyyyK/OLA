@@ -1,6 +1,6 @@
-package org.loose.fis.registration.example.exceptions;
+package ola.exceptions;
 
-import org.loose.fis.registration.example.classes.Author;
+import ola.classes.Author;
 
 public class AuthorDoesNotExistException extends Exception {
 

@@ -1,22 +1,19 @@
-package org.loose.fis.registration.example.services;
+package ola.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
+import ola.exceptions.*;
 import org.apache.commons.io.FileUtils;
-import org.loose.fis.registration.example.classes.Author;
-import org.loose.fis.registration.example.classes.Book;
-import org.loose.fis.registration.example.exceptions.*;
-import org.loose.fis.registration.example.model.User;
+import ola.classes.Author;
+import ola.classes.Book;
+import ola.exceptions.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

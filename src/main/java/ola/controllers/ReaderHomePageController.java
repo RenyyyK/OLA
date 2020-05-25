@@ -1,19 +1,16 @@
-package org.loose.fis.registration.example.controllers;
+package ola.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.loose.fis.registration.example.Main;
-import org.loose.fis.registration.example.classes.Author;
-import org.loose.fis.registration.example.classes.Book;
-import org.loose.fis.registration.example.services.BookService;
+import ola.Main;
+import ola.classes.Author;
+import ola.classes.Book;
+import ola.services.BookService;
 
 import java.util.ArrayList;
 
@@ -33,12 +30,12 @@ public class ReaderHomePageController {
     private ArrayList<String> quotes;
 
     public ReaderHomePageController() {
-        Favorites = new ArrayList<Book>();
-        CurrentlyReading = new ArrayList<Book>();
-        WantToRead = new ArrayList<Book>();
-        FinishedBooks = new ArrayList<Book>();
-        followedAuthors = new ArrayList<Author>();
-        quotes = new ArrayList<String>();
+        Favorites = new ArrayList<>();
+        CurrentlyReading = new ArrayList<>();
+        WantToRead = new ArrayList<>();
+        FinishedBooks = new ArrayList<>();
+        followedAuthors = new ArrayList<>();
+        quotes = new ArrayList<>();
     }
 
     public void addBookToList(Book b, ArrayList<Book> a){
@@ -70,7 +67,7 @@ public class ReaderHomePageController {
     }
 
     public void handleFavorites(){
-        ListView<Button> list = new ListView<Button>();
+        ListView<Button> list = new ListView<>();
         for(Book b : Favorites) {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
@@ -82,7 +79,7 @@ public class ReaderHomePageController {
     }
 
     public void handleCurrentlyReading(){
-        ListView<Button> list = new ListView<Button>();
+        ListView<Button> list = new ListView<>();
         for(Book b : CurrentlyReading) {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
@@ -94,7 +91,7 @@ public class ReaderHomePageController {
     }
 
     public void handleWantToRead(){
-        ListView<Button> list = new ListView<Button>();
+        ListView<Button> list = new ListView<>();
         for(Book b : WantToRead) {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
@@ -106,7 +103,7 @@ public class ReaderHomePageController {
     }
 
     public void handleFinishedReading(){
-        ListView<Button> list = new ListView<Button>();
+        ListView<Button> list = new ListView<>();
         for(Book b : FinishedBooks) {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
@@ -117,10 +114,12 @@ public class ReaderHomePageController {
         stage.show();
     }
 
-    public void handleAuthorsList(){
-        ListView<Button> list = new ListView<Button>();
+    public void handleAuthorsList() {
+        ListView<Button> list = new ListView<>();
         for(Author a : followedAuthors) {
             Button button = new Button(a.getName());
+            //Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BookPage.fxml"));
+            //button.setOnAction();
             list.getItems().add(button);
         }
         Scene s = new Scene(list, 500, 500);
@@ -129,7 +128,7 @@ public class ReaderHomePageController {
     }
 
     public void handleQuoteList(){
-        ListView<String> list = new ListView<String>();
+        ListView<String> list = new ListView<>();
         for(String s : quotes) {
             list.getItems().add(s);
         }
@@ -159,4 +158,6 @@ public class ReaderHomePageController {
         stage.setScene(s);
         stage.show();
     }
+
+    //public void openBookPage(){}
 }

@@ -1,4 +1,4 @@
-package org.loose.fis.registration.example.classes;
+package ola.classes;
 
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
