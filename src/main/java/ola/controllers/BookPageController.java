@@ -41,17 +41,20 @@ public class BookPageController {
         Button read = new Button("Read Book");
         Button download = new Button("Download Book");
 
+        Text addToList = new Text("Add this book to a reading list:");
         ChoiceBox choiceBox = new ChoiceBox();
-
-        choiceBox.getItems().add("Favorites");
-        choiceBox.getItems().add("Currently Reading");
-        choiceBox.getItems().add("Want to Read");
-        choiceBox.getItems().add("Finished Reading");
+        choiceBox.getItems().addAll("Favorites", "Currently Reading", "Want to Read", "Finished Reading");
 
         VBox left = new VBox(img, read, download);
         VBox center = new VBox(title, author, description);
         HBox bottom = new HBox(comments, addComment);
+        VBox right = new VBox(addToList, choiceBox);
 
+        BorderPane grid = new BorderPane();
+        grid.setCenter(center);
+        grid.setBottom(bottom);
+        grid.setLeft(left);
+        grid.setRight(right);
 
         StackPane layout = new StackPane();
         Image wallpaper_image = new Image("books.jpg");
@@ -59,7 +62,7 @@ public class BookPageController {
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background background = new Background(bi);
         layout.setBackground(background);
-        layout.getChildren().add(root);
+        layout.getChildren().add(grid);
 
         Scene scene = new Scene(layout, 500, 500);
         bookStage.setScene(scene);
