@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 import ola.classes.Author;
 import ola.classes.Book;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -28,16 +30,6 @@ public class AuthorHomePageController extends ReaderHomePageController{
     File selectedImage;
     Book newBook;
 
-    public int containsBook(String title){
-        int i=0;
-        for(Book b:myBooks){
-            if(b.getTitle().equals(title))
-                return i;
-            i++;
-        }
-        return -1;
-    }
-
     public AuthorHomePageController() {
         super();
         myBooks = new ArrayList<>();
@@ -47,10 +39,21 @@ public class AuthorHomePageController extends ReaderHomePageController{
     public void handleBooks(){
         ListView<Button> list = new ListView<>();
         for(Book b : myBooks) {
-           // ImageView iw = new ImageView(b.getCover());
+            //ImageView iw = new ImageView(b.getCover());
             String s = b.getTitle();
             Button button = new Button(s);
             list.getItems().add(button);
+
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        openBookPage(b);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
         list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
         list.setMaxSize(200, 300);
@@ -131,7 +134,7 @@ public class AuthorHomePageController extends ReaderHomePageController{
             TextField title = new TextField();
             Button ok = new Button("Delete Book");
             ok.setOnAction(event -> {
-               int pos = containsBook(title.getText());
+               int pos = containsBook(myBooks, title.getText());
                 if(pos == -1){
                     Text error = new Text("No such book!");
                     HBox noBox = new HBox(error);
