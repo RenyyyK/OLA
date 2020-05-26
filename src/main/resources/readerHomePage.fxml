@@ -11,6 +11,9 @@
         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
     </padding>
 
+    <Text id="title-text" text="Library Application - Home Page" GridPane.columnIndex="0" GridPane.columnSpan="2"
+          GridPane.rowIndex="0" fill="antiquewhite"/>
+
     <HBox alignment="TOP_LEFT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="3">
         <Button onAction="#handleFavorites" text="Favorites"/>
     </HBox>
@@ -35,15 +38,11 @@
         <Button onAction="#handleQuoteList" text="Quotes"/>
     </HBox>
 
-    <HBox spacing="10" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.columnSpan="2">
-        <Button onAction="#searchBook" text="Search Book"/>
-    </HBox>
+    <Label text="Search Book:" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="4" textFill="aliceblue"/>
 
     <TextField fx:id="searchForBook" GridPane.columnIndex="7" GridPane.rowIndex="1"/>
 
-    <HBox spacing="10" GridPane.columnIndex="5" GridPane.rowIndex="5" GridPane.columnSpan="2">
-        <Button onAction="#searchAuthor" text="Search Author"/>
-    </HBox>
+    <Label text="Search Author:" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.columnSpan="4" textFill="aliceblue"/>
 
     <TextField fx:id="searchForAuthor" GridPane.columnIndex="7" GridPane.rowIndex="2"/>
 </GridPane>

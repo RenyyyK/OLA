@@ -1,11 +1,17 @@
 package ola.controllers;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import ola.Main;
 import ola.classes.Author;
@@ -16,6 +22,7 @@ import java.util.ArrayList;
 
 public class ReaderHomePageController {
     Stage stage = Main.getStage();
+    Stage listStage = new Stage();
 
     @FXML
     private TextField searchForBook;
@@ -73,9 +80,15 @@ public class ReaderHomePageController {
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
         }
-        Scene s = new Scene(list, 500, 500);
-        stage.setScene(s);
-        stage.show();
+        list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
+        list.setMaxSize(200, 300);
+        BorderPane bp = new BorderPane();
+        bp.setCenter(list);
+        bp.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        Scene s = new Scene(bp, 400, 400);
+        listStage.setScene(s);
+        listStage.show();
     }
 
     public void handleCurrentlyReading(){
@@ -85,9 +98,15 @@ public class ReaderHomePageController {
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
         }
-        Scene s = new Scene(list, 500, 500);
-        stage.setScene(s);
-        stage.show();
+        list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
+        list.setMaxSize(200, 300);
+        BorderPane bp = new BorderPane();
+        bp.setCenter(list);
+        bp.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        Scene s = new Scene(bp, 400, 400);
+        listStage.setScene(s);
+        listStage.show();
     }
 
     public void handleWantToRead(){
@@ -97,9 +116,15 @@ public class ReaderHomePageController {
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
         }
-        Scene s = new Scene(list, 500, 500);
-        stage.setScene(s);
-        stage.show();
+        list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
+        list.setMaxSize(200, 300);
+        BorderPane bp = new BorderPane();
+        bp.setCenter(list);
+        bp.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        Scene s = new Scene(bp, 400, 400);
+        listStage.setScene(s);
+        listStage.show();
     }
 
     public void handleFinishedReading(){
@@ -109,9 +134,15 @@ public class ReaderHomePageController {
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
         }
-        Scene s = new Scene(list, 500, 500);
-        stage.setScene(s);
-        stage.show();
+        list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
+        list.setMaxSize(200, 300);
+        BorderPane bp = new BorderPane();
+        bp.setCenter(list);
+        bp.setBackground(new Background(new BackgroundFill(Color.DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        Scene s = new Scene(bp, 400, 400);
+        listStage.setScene(s);
+        listStage.show();
     }
 
     public void handleAuthorsList() {
@@ -122,9 +153,15 @@ public class ReaderHomePageController {
             //button.setOnAction();
             list.getItems().add(button);
         }
-        Scene s = new Scene(list, 500, 500);
-        this.stage.setScene(s);
-        this.stage.show();
+        list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
+        list.setMaxSize(200, 300);
+        BorderPane bp = new BorderPane();
+        bp.setCenter(list);
+        bp.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        Scene s = new Scene(bp, 400, 400);
+        listStage.setScene(s);
+        listStage.show();
     }
 
     public void handleQuoteList(){
@@ -132,9 +169,15 @@ public class ReaderHomePageController {
         for(String s : quotes) {
             list.getItems().add(s);
         }
-        Scene s = new Scene(list, 500, 500);
-        this.stage.setScene(s);
-        this.stage.show();
+        list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
+        list.setMaxSize(200, 300);
+        BorderPane bp = new BorderPane();
+        bp.setCenter(list);
+        bp.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        Scene s = new Scene(bp, 400, 400);
+        listStage.setScene(s);
+        listStage.show();
     }
 
     public void followAuthor(Author a){

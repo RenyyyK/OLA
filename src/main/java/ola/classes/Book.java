@@ -30,6 +30,10 @@ public class Book {
         this.comments = comments;
     }
 
+    public Book(String title) {
+        title = title;
+    }
+
     public Book(String title, Author author) {
         title = title;
         this.author=author;
@@ -121,5 +125,9 @@ public class Book {
 
     public void setFile(File file) {
         this.file = file;
+    }
+
+    public boolean equals(Book b){
+        return (b.title.equals(title));
     }
 }
