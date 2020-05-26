@@ -1,5 +1,6 @@
 package ola.classes;
 
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 
@@ -22,8 +23,11 @@ public class Book {
         comments.remove(c);
     }
 
-    public ArrayList<String> getComments() {
-        return comments;
+    public ListView<String> getComments() {
+        ListView<String> list = new ListView<>();
+        for(String s:comments)
+            list.getItems().add(s);
+        return list;
     }
 
     public void setComments(ArrayList<String> comments) {
@@ -31,54 +35,54 @@ public class Book {
     }
 
     public Book(String title) {
-        title = title;
+        this.title = title;
     }
 
     public Book(String title, Author author) {
-        title = title;
+        this.title = title;
         this.author=author;
     }
 
     public Book(String title, Author author, Image cover) {
-        title = title;
+        this.title = title;
         this.author=author;
         setCover(cover);
     }
 
     public Book(String title, Author author, Text description) {
-        title = title;
+        this.title = title;
         this.author=author;
         this.description=description;
     }
     public Book(String title, Author author, File file) {
-        title = title;
+        this.title = title;
         this.author=author;
         this.file=file;
     }
 
     public Book(String title, Author author, Image cover, Text description) {
-        title = title;
+        this.title = title;
         this.author=author;
         setCover(cover);
         this.description=description;
     }
 
     public Book(String title, Author author, Image cover, File file) {
-        title = title;
+        this.title = title;
         this.author=author;
         setCover(cover);
         this.file=file;
     }
 
     public Book(String title, Author author, Text description, File file) {
-        title = title;
+        this.title = title;
         this.author=author;
         this.description=description;
         this.file=file;
     }
 
     public Book(String title, Author author, Image cover, Text description, File file) {
-        title = title;
+        this.title = title;
         this.author=author;
         setCover(cover);
         this.description=description;
@@ -92,7 +96,7 @@ public class Book {
     }
 
     public void setTitle(String title) {
-        title = title;
+        this.title = title;
     }
 
     public Author getAuthor() {

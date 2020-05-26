@@ -2,22 +2,68 @@ package ola.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ola.Main;
 import ola.classes.Book;
+import ola.services.UserService;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class BookPageController {
     Stage page = Main.getStage();
+    Stage bookStage = new Stage();
 
     public Book book;
     public Scene scene;
 
-    public BookPageController(Book b){
+    public BookPageController(Book b) throws IOException {
         book = b;
+        bookStage.setTitle("Book Page");
+
+        ImageView img = new ImageView(book.getCover());
+        Text title = new Text(book.getTitle());
+        Button author = new Button(book.getAuthor().getName());
+        Text description = book.getDescription();
+        ListView<String> comments = book.getComments();
+        Button addComment = new Button("Add a Comment");
+        Button read = new Button("Read Book");
+        Button download = new Button("Download Book");
+
+        ChoiceBox choiceBox = new ChoiceBox();
+
+        choiceBox.getItems().add("Favorites");
+        choiceBox.getItems().add("Currently Reading");
+        choiceBox.getItems().add("Want to Read");
+        choiceBox.getItems().add("Finished Reading");
+
+        VBox left = new VBox(img, read, download);
+        VBox center = new VBox(title, author, description);
+        HBox bottom = new HBox(comments, addComment);
+
+
+        StackPane layout = new StackPane();
+        Image wallpaper_image = new Image("books.jpg");
+        BackgroundImage bi = new BackgroundImage(wallpaper_image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background background = new Background(bi);
+        layout.setBackground(background);
+        layout.getChildren().add(root);
+
+        Scene scene = new Scene(layout, 500, 500);
+        bookStage.setScene(scene);
+        bookStage.show();
     }
 
     public void handleRead(){
@@ -38,12 +84,10 @@ public class BookPageController {
         page.setScene(s);
         page.show();
 
-        EventHandler<ActionEvent> submitComment = new EventHandler<ActionEvent>() {
-             public void handle(ActionEvent e) {
-                 book.addComment(comment.getText());
-                 page.setScene(scene);
-             }
-         };
+        EventHandler<ActionEvent> submitComment = e -> {
+            book.addComment(comment.getText());
+            page.setScene(scene);
+        };
 
         ok.setOnAction(submitComment);
     }

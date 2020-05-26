@@ -1,5 +1,7 @@
 package ola.controllers;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -7,17 +9,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ola.Main;
 import ola.classes.Author;
 import ola.classes.Book;
 import ola.services.BookService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ReaderHomePageController {
@@ -35,6 +38,16 @@ public class ReaderHomePageController {
     private ArrayList<Book> FinishedBooks;
     private ArrayList<Author> followedAuthors;
     private ArrayList<String> quotes;
+
+    public int containsBook(ArrayList<Book> list, String title){
+        int i=0;
+        for(Book b:list){
+            if(b.getTitle().equals(title))
+                return i;
+            i++;
+        }
+        return -1;
+    }
 
     public ReaderHomePageController() {
         Favorites = new ArrayList<>();
@@ -89,6 +102,40 @@ public class ReaderHomePageController {
         Scene s = new Scene(bp, 400, 400);
         listStage.setScene(s);
         listStage.show();
+
+        Button remove = new Button("Remove a Book from the list");
+        bp.setBottom(remove);
+
+        EventHandler<ActionEvent> removeBook = e -> {
+            Text t = new Text("Write title of the Book you want to remove from list:");
+            t.setFont(Font.font("Cooper", FontWeight.BOLD, 12));
+            t.setFill(Color.GHOSTWHITE);
+            TextField title = new TextField();
+            Button ok = new Button("Remove Book");
+            ok.setOnAction(event -> {
+                int pos = containsBook(Favorites, title.getText());
+                if(pos == -1){
+                    Text error = new Text("No such book!");
+                    HBox noBox = new HBox(error);
+                    Scene noScene = new Scene(noBox, 100, 100);
+                    Stage noStage = new Stage();
+                    noStage.setScene(noScene);
+                    noStage.show();
+                }
+                else{
+                    Favorites.remove(pos);
+                    listStage.close();
+                    handleFavorites();
+                }
+            });
+            HBox box1 = new HBox(t, title, ok);
+            box1.setBackground(new Background(new BackgroundFill(Color.MEDIUMSEAGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+            Scene deleteScene = new Scene(box1, 500, 30);
+            listStage.setScene(deleteScene);
+            listStage.show();
+        };
+
+        remove.setOnAction(removeBook);
     }
 
     public void handleCurrentlyReading(){
@@ -107,6 +154,40 @@ public class ReaderHomePageController {
         Scene s = new Scene(bp, 400, 400);
         listStage.setScene(s);
         listStage.show();
+
+        Button remove = new Button("Remove a Book from the list");
+        bp.setBottom(remove);
+
+        EventHandler<ActionEvent> removeBook = e -> {
+            Text t = new Text("Write title of the Book you want to remove from list:");
+            t.setFont(Font.font("Cooper", FontWeight.BOLD, 12));
+            t.setFill(Color.GHOSTWHITE);
+            TextField title = new TextField();
+            Button ok = new Button("Remove Book");
+            ok.setOnAction(event -> {
+                int pos = containsBook(CurrentlyReading, title.getText());
+                if(pos == -1){
+                    Text error = new Text("No such book!");
+                    HBox noBox = new HBox(error);
+                    Scene noScene = new Scene(noBox, 100, 100);
+                    Stage noStage = new Stage();
+                    noStage.setScene(noScene);
+                    noStage.show();
+                }
+                else{
+                    CurrentlyReading.remove(pos);
+                    listStage.close();
+                    handleCurrentlyReading();
+                }
+            });
+            HBox box1 = new HBox(t, title, ok);
+            box1.setBackground(new Background(new BackgroundFill(Color.MEDIUMSEAGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+            Scene deleteScene = new Scene(box1, 500, 30);
+            listStage.setScene(deleteScene);
+            listStage.show();
+        };
+
+        remove.setOnAction(removeBook);
     }
 
     public void handleWantToRead(){
@@ -125,6 +206,40 @@ public class ReaderHomePageController {
         Scene s = new Scene(bp, 400, 400);
         listStage.setScene(s);
         listStage.show();
+
+        Button remove = new Button("Remove a Book from the list");
+        bp.setBottom(remove);
+
+        EventHandler<ActionEvent> removeBook = e -> {
+            Text t = new Text("Write title of the Book you want to remove from list:");
+            t.setFont(Font.font("Cooper", FontWeight.BOLD, 12));
+            t.setFill(Color.GHOSTWHITE);
+            TextField title = new TextField();
+            Button ok = new Button("Remove Book");
+            ok.setOnAction(event -> {
+                int pos = containsBook(WantToRead, title.getText());
+                if(pos == -1){
+                    Text error = new Text("No such book!");
+                    HBox noBox = new HBox(error);
+                    Scene noScene = new Scene(noBox, 100, 100);
+                    Stage noStage = new Stage();
+                    noStage.setScene(noScene);
+                    noStage.show();
+                }
+                else{
+                    WantToRead.remove(pos);
+                    listStage.close();
+                    handleWantToRead();
+                }
+            });
+            HBox box1 = new HBox(t, title, ok);
+            box1.setBackground(new Background(new BackgroundFill(Color.MEDIUMSEAGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+            Scene deleteScene = new Scene(box1, 500, 30);
+            listStage.setScene(deleteScene);
+            listStage.show();
+        };
+
+        remove.setOnAction(removeBook);
     }
 
     public void handleFinishedReading(){
@@ -143,6 +258,40 @@ public class ReaderHomePageController {
         Scene s = new Scene(bp, 400, 400);
         listStage.setScene(s);
         listStage.show();
+
+        Button remove = new Button("Remove a Book from the list");
+        bp.setBottom(remove);
+
+        EventHandler<ActionEvent> removeBook = e -> {
+            Text t = new Text("Write title of the Book you want to remove from list:");
+            t.setFont(Font.font("Cooper", FontWeight.BOLD, 12));
+            t.setFill(Color.GHOSTWHITE);
+            TextField title = new TextField();
+            Button ok = new Button("Remove Book");
+            ok.setOnAction(event -> {
+                int pos = containsBook(FinishedBooks, title.getText());
+                if(pos == -1){
+                    Text error = new Text("No such book!");
+                    HBox noBox = new HBox(error);
+                    Scene noScene = new Scene(noBox, 100, 100);
+                    Stage noStage = new Stage();
+                    noStage.setScene(noScene);
+                    noStage.show();
+                }
+                else{
+                    FinishedBooks.remove(pos);
+                    listStage.close();
+                    handleFinishedReading();
+                }
+            });
+            HBox box1 = new HBox(t, title, ok);
+            box1.setBackground(new Background(new BackgroundFill(Color.MEDIUMSEAGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+            Scene deleteScene = new Scene(box1, 500, 30);
+            listStage.setScene(deleteScene);
+            listStage.show();
+        };
+
+        remove.setOnAction(removeBook);
     }
 
     public void handleAuthorsList() {
@@ -189,8 +338,8 @@ public class ReaderHomePageController {
         Book b = BookService.searchBook(title);
         ListView<Book> book = new ListView<>();
         Scene s = new Scene(book, 500, 500);
-        stage.setScene(s);
-        stage.show();
+        listStage.setScene(s);
+        listStage.show();
     }
 
     public void searchAuthor(){
@@ -198,9 +347,11 @@ public class ReaderHomePageController {
         Author a = BookService.searchAuthorByName(name);
         ListView<Author> author = new ListView<>();
         Scene s = new Scene(author, 500, 500);
-        stage.setScene(s);
-        stage.show();
+        listStage.setScene(s);
+        listStage.show();
     }
 
-    //public void openBookPage(){}
+    public void openBookPage(Book b) throws IOException {
+        BookPageController bp = new BookPageController(b);
+    }
 }
