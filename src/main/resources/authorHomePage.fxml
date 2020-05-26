@@ -37,11 +37,15 @@
         <Button onAction="#handleQuoteList" text="Quotes"/>
     </HBox>
 
-    <Label text="Search Book:" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="4" textFill="aliceblue"/>
+    <HBox alignment="TOP_RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.columnSpan="4">
+        <Button onAction="#searchBook" text="Search Book"/>
+    </HBox>
 
     <TextField fx:id="searchForBook" GridPane.columnIndex="7" GridPane.rowIndex="1"/>
 
-    <Label text="Search Author:" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.columnSpan="4" textFill="aliceblue"/>
+    <HBox alignment="TOP_RIGHT" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.columnSpan="4">
+        <Button onAction="#searchAuthor" text="Search Author"/>
+    </HBox>
 
     <TextField fx:id="searchForAuthor" GridPane.columnIndex="7" GridPane.rowIndex="2"/>
 

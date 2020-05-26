@@ -13,8 +13,13 @@ public class Author {
         posts = new ArrayList<String>();
     }
 
+    public ArrayList<String> getPosts() {
+        return posts;
+    }
+
     public Author(){
         books = new ArrayList<>();
+        posts = new ArrayList<>();
     }
 
     public void addBook(Book b){
