@@ -18,6 +18,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ola.classes.Author;
 import ola.classes.Book;
+import ola.model.User;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +34,12 @@ public class AuthorHomePageController extends ReaderHomePageController{
 
     public AuthorHomePageController() {
         super();
+        myBooks = new ArrayList<>();
+        posts = new ArrayList<>();
+    }
+
+    public AuthorHomePageController(User u) {
+        super(u);
         myBooks = new ArrayList<>();
         posts = new ArrayList<>();
     }

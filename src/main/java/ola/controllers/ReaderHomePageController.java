@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import ola.Main;
 import ola.classes.Author;
 import ola.classes.Book;
+import ola.model.User;
 import ola.services.BookService;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 public class ReaderHomePageController {
     Stage stage = Main.getStage();
     Stage listStage = new Stage();
+    User user;
 
     @FXML
     private TextField searchForBook;
@@ -50,6 +52,16 @@ public class ReaderHomePageController {
     }
 
     public ReaderHomePageController() {
+        Favorites = new ArrayList<>();
+        CurrentlyReading = new ArrayList<>();
+        WantToRead = new ArrayList<>();
+        FinishedBooks = new ArrayList<>();
+        followedAuthors = new ArrayList<>();
+        quotes = new ArrayList<>();
+    }
+
+    public ReaderHomePageController(User u) {
+        user = u;
         Favorites = new ArrayList<>();
         CurrentlyReading = new ArrayList<>();
         WantToRead = new ArrayList<>();
@@ -352,6 +364,6 @@ public class ReaderHomePageController {
     }
 
     public void openBookPage(Book b) throws IOException {
-        BookPageController bp = new BookPageController(b);
+        BookPageController bp = new BookPageController(b, user);
     }
 }

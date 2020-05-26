@@ -13,7 +13,7 @@ public class Book {
     private Image cover;
     private Text description;
     private File file;
-    private ArrayList<String> comments;
+    private ArrayList<String> comments = new ArrayList<>();
 
     public void addComment(String c){
         comments.add(c);
@@ -23,11 +23,8 @@ public class Book {
         comments.remove(c);
     }
 
-    public ListView<String> getComments() {
-        ListView<String> list = new ListView<>();
-        for(String s:comments)
-            list.getItems().add(s);
-        return list;
+    public ArrayList<String> getComments() {
+        return comments;
     }
 
     public void setComments(ArrayList<String> comments) {
@@ -35,61 +32,64 @@ public class Book {
     }
 
     public Book(String title) {
+        addComment("Author: Welcome to this Book! Please be nice :)");
         this.title = title;
     }
-
     public Book(String title, Author author) {
+        addComment("Author: Welcome to this Book! Please be nice :)");
         this.title = title;
         this.author=author;
     }
-
     public Book(String title, Author author, Image cover) {
+        addComment("Author: Welcome to this Book! Please be nice :)");
         this.title = title;
         this.author=author;
         setCover(cover);
     }
-
     public Book(String title, Author author, Text description) {
+        addComment("Author: Welcome to this Book! Please be nice :)");
         this.title = title;
         this.author=author;
         this.description=description;
     }
     public Book(String title, Author author, File file) {
+        addComment("Author: Welcome to this Book! Please be nice :)");
         this.title = title;
         this.author=author;
         this.file=file;
     }
-
     public Book(String title, Author author, Image cover, Text description) {
+        addComment("Author: Welcome to this Book! Please be nice :)");
         this.title = title;
         this.author=author;
         setCover(cover);
         this.description=description;
     }
-
     public Book(String title, Author author, Image cover, File file) {
+        addComment("Author: Welcome to this Book! Please be nice :)");
         this.title = title;
         this.author=author;
         setCover(cover);
         this.file=file;
     }
-
     public Book(String title, Author author, Text description, File file) {
+        addComment("Author: Welcome to this Book! Please be nice :)");
         this.title = title;
         this.author=author;
         this.description=description;
         this.file=file;
     }
-
     public Book(String title, Author author, Image cover, Text description, File file) {
+        addComment("Author: Welcome to this Book! Please be nice :)");
         this.title = title;
         this.author=author;
         setCover(cover);
         this.description=description;
         this.file=file;
     }
-
-    public Book(){}
+    public Book(){
+        addComment("Author: Welcome to this Book! Please be nice :)");
+    }
 
     public String getTitle() {
         return title;
