@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import ola.services.BookService;
 import ola.services.UserService;
 
 public class Main extends Application {
@@ -24,6 +25,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         mainStage = primaryStage;
         UserService.loadUsersFromFile();
+        //BookService.loadAuthorsFromFile();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
         mainStage.setTitle("Registration");
 

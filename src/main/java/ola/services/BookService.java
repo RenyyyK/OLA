@@ -19,8 +19,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class BookService {
+
     private static List<Author> authors;
-    private static final Path BOOKS_PATH = FileSystemService.getPathToFile("config", "books.json");
+    private static final Path BOOKS_PATH = FileSystemService.getPathToFile("resources", "books.json");
 
     public static void loadAuthorsFromFile() throws IOException {
 
@@ -43,7 +44,7 @@ public class BookService {
         }
     }
 
-    private static void checkBooktAlreadyExists(String title) throws BookAlreadyExistsException
+    private static void checkBookAlreadyExists(String title) throws BookAlreadyExistsException
     {
         for(Author author : authors)
         {
@@ -95,56 +96,65 @@ public class BookService {
 
     public static void  addBook(String title, Author author) throws BookAlreadyExistsException
     {
-        checkBooktAlreadyExists(title);
+        checkBookAlreadyExists(title);
         author.getBooks().add(new Book(title, author));
+        persistAuthors();
     }
 
     public static void  addBook(String title, Author author, Image cover) throws BookAlreadyExistsException
     {
-        checkBooktAlreadyExists(title);
+        checkBookAlreadyExists(title);
         author.getBooks().add(new Book(title, author, cover));
+        persistAuthors();
     }
 
     public static void  addBook(String title, Author author, Text description) throws BookAlreadyExistsException
     {
-        checkBooktAlreadyExists(title);
+        checkBookAlreadyExists(title);
         author.getBooks().add(new Book(title, author, description));
+        persistAuthors();
     }
 
     public static void  addBook(String title, Author author, File file) throws BookAlreadyExistsException
     {
-        checkBooktAlreadyExists(title);
+        checkBookAlreadyExists(title);
         author.getBooks().add(new Book(title, author, file));
+        persistAuthors();
     }
 
     public static void  addBook(String title, Author author, Image cover, Text description) throws BookAlreadyExistsException
     {
-        checkBooktAlreadyExists(title);
+        checkBookAlreadyExists(title);
         author.getBooks().add(new Book(title, author, cover, description));
+        persistAuthors();
     }
 
     public static void  addBook(String title, Author author, Image cover, File file) throws BookAlreadyExistsException
     {
-        checkBooktAlreadyExists(title);
+        checkBookAlreadyExists(title);
         author.getBooks().add(new Book(title, author, cover, file));
+        persistAuthors();
     }
 
     public static void  addBook(String title, Author author, Text description, File file) throws BookAlreadyExistsException
     {
-        checkBooktAlreadyExists(title);
+        checkBookAlreadyExists(title);
         author.getBooks().add(new Book(title, author, description, file));
+        persistAuthors();
     }
 
     public static void  addBook(String title, Author author, Image cover, Text description, File file) throws BookAlreadyExistsException
     {
-        checkBooktAlreadyExists(title);
+        checkBookAlreadyExists(title);
         author.getBooks().add(new Book(title, author, cover, description, file));
+        persistAuthors();
     }
 
     public static void addAuthor(Author author) throws AuthorAlreadyExistsException
     {
         checkAuthorAlreadyExists(author);
         authors.add(author);
+        persistAuthors();
     }
 
     public static void deleteBook(String title, Author author) throws BookDoesNotExistException
@@ -156,6 +166,7 @@ public class BookService {
                 Book b = book;
                 books.remove(b);
             }
+        persistAuthors();
     }
 
     public static void deleteBook(String title) throws  BookDoesNotExistException
@@ -170,6 +181,7 @@ public class BookService {
                     books.remove(b);
                 }
         }
+        persistAuthors();
     }
 
     public static  void deleteAuthor(Author name) throws AuthorDoesNotExistException, BookDoesNotExistException
@@ -183,6 +195,7 @@ public class BookService {
                     deleteBook(book.getTitle(), author);
                 authors.remove(author);
             }
+        persistAuthors();
     }
 
     public static Book searchBook(String title, Author name) //throws AuthorDoesNotExistException, BookDoesNotExistException
