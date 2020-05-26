@@ -21,7 +21,7 @@ import java.util.Objects;
 public class UserService {
 
     private static List<User> users;
-    private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
+    private static final Path USERS_PATH = FileSystemService.getPathToFile("resources", "users.json");
 
     public static void loadUsersFromFile() throws IOException {
 

@@ -1,10 +1,25 @@
 package ola.model;
 
+import ola.classes.Author;
+import ola.classes.Book;
+
+import java.util.ArrayList;
+
 public class User {
 
     private String username;
     private String password;
     private String role;
+
+    private ArrayList<Book> Favorites;
+    private ArrayList<Book> CurrentlyReading;
+    private ArrayList<Book> WantToRead;
+    private ArrayList<Book> FinishedBooks;
+    private ArrayList<Author> followedAuthors;
+    private ArrayList<String> quotes;
+
+    private ArrayList<Book> myBooks;
+    private ArrayList<String> posts;
 
     public User() {
     }
