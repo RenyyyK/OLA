@@ -34,13 +34,6 @@ public class ReaderHomePageController {
     @FXML
     private TextField searchForAuthor;
 
-    private ArrayList<Book> Favorites;
-    private ArrayList<Book> CurrentlyReading;
-    private ArrayList<Book> WantToRead;
-    private ArrayList<Book> FinishedBooks;
-    private ArrayList<Author> followedAuthors;
-    private ArrayList<String> quotes;
-
     public int containsBook(ArrayList<Book> list, String title){
         int i=0;
         for(Book b:list){
@@ -52,55 +45,15 @@ public class ReaderHomePageController {
     }
 
     public ReaderHomePageController() {
-        Favorites = new ArrayList<>();
-        CurrentlyReading = new ArrayList<>();
-        WantToRead = new ArrayList<>();
-        FinishedBooks = new ArrayList<>();
-        followedAuthors = new ArrayList<>();
-        quotes = new ArrayList<>();
+        user = SignInController.getUser();
     }
 
     public ReaderHomePageController(User u) {
         user = u;
-        Favorites = new ArrayList<>();
-        CurrentlyReading = new ArrayList<>();
-        WantToRead = new ArrayList<>();
-        FinishedBooks = new ArrayList<>();
-        followedAuthors = new ArrayList<>();
-        quotes = new ArrayList<>();
     }
-
-    public void addBookToList(Book b, ArrayList<Book> a){
-        a.add(b);
-    }
-
-    public ArrayList<Book> getFavorites() {
-        return Favorites;
-    }
-
-    public ArrayList<Book> getCurrentlyReading() {
-        return CurrentlyReading;
-    }
-
-    public ArrayList<Book> getWantToRead() {
-        return WantToRead;
-    }
-
-    public ArrayList<Book> getFinishedBooks() {
-        return FinishedBooks;
-    }
-
-    public ArrayList<Author> getFollowedAuthors() {
-        return followedAuthors;
-    }
-
-    public ArrayList<String> getQuotes() {
-        return quotes;
-    }
-
     public void handleFavorites(){
         ListView<Button> list = new ListView<>();
-        for(Book b : Favorites) {
+        for(Book b : user.getFavorites()) {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
@@ -125,7 +78,7 @@ public class ReaderHomePageController {
             TextField title = new TextField();
             Button ok = new Button("Remove Book");
             ok.setOnAction(event -> {
-                int pos = containsBook(Favorites, title.getText());
+                int pos = containsBook(user.getFavorites(), title.getText());
                 if(pos == -1){
                     Text error = new Text("No such book!");
                     HBox noBox = new HBox(error);
@@ -135,7 +88,7 @@ public class ReaderHomePageController {
                     noStage.show();
                 }
                 else{
-                    Favorites.remove(pos);
+                    user.getFavorites().remove(pos);
                     listStage.close();
                     handleFavorites();
                 }
@@ -152,7 +105,7 @@ public class ReaderHomePageController {
 
     public void handleCurrentlyReading(){
         ListView<Button> list = new ListView<>();
-        for(Book b : CurrentlyReading) {
+        for(Book b : user.getCurrentlyReading()) {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
@@ -177,7 +130,7 @@ public class ReaderHomePageController {
             TextField title = new TextField();
             Button ok = new Button("Remove Book");
             ok.setOnAction(event -> {
-                int pos = containsBook(CurrentlyReading, title.getText());
+                int pos = containsBook(user.getCurrentlyReading(), title.getText());
                 if(pos == -1){
                     Text error = new Text("No such book!");
                     HBox noBox = new HBox(error);
@@ -187,7 +140,7 @@ public class ReaderHomePageController {
                     noStage.show();
                 }
                 else{
-                    CurrentlyReading.remove(pos);
+                    user.getCurrentlyReading().remove(pos);
                     listStage.close();
                     handleCurrentlyReading();
                 }
@@ -204,7 +157,7 @@ public class ReaderHomePageController {
 
     public void handleWantToRead(){
         ListView<Button> list = new ListView<>();
-        for(Book b : WantToRead) {
+        for(Book b : user.getWantToRead()) {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
@@ -229,7 +182,7 @@ public class ReaderHomePageController {
             TextField title = new TextField();
             Button ok = new Button("Remove Book");
             ok.setOnAction(event -> {
-                int pos = containsBook(WantToRead, title.getText());
+                int pos = containsBook(user.getWantToRead(), title.getText());
                 if(pos == -1){
                     Text error = new Text("No such book!");
                     HBox noBox = new HBox(error);
@@ -239,7 +192,7 @@ public class ReaderHomePageController {
                     noStage.show();
                 }
                 else{
-                    WantToRead.remove(pos);
+                    user.getWantToRead().remove(pos);
                     listStage.close();
                     handleWantToRead();
                 }
@@ -256,7 +209,7 @@ public class ReaderHomePageController {
 
     public void handleFinishedReading(){
         ListView<Button> list = new ListView<>();
-        for(Book b : FinishedBooks) {
+        for(Book b : user.getFinishedBooks()) {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
@@ -281,7 +234,7 @@ public class ReaderHomePageController {
             TextField title = new TextField();
             Button ok = new Button("Remove Book");
             ok.setOnAction(event -> {
-                int pos = containsBook(FinishedBooks, title.getText());
+                int pos = containsBook(user.getFinishedBooks(), title.getText());
                 if(pos == -1){
                     Text error = new Text("No such book!");
                     HBox noBox = new HBox(error);
@@ -291,7 +244,7 @@ public class ReaderHomePageController {
                     noStage.show();
                 }
                 else{
-                    FinishedBooks.remove(pos);
+                    user.getFinishedBooks().remove(pos);
                     listStage.close();
                     handleFinishedReading();
                 }
@@ -308,10 +261,15 @@ public class ReaderHomePageController {
 
     public void handleAuthorsList() {
         ListView<Button> list = new ListView<>();
-        for(Author a : followedAuthors) {
+        for(Author a : user.getFollowedAuthors()) {
             Button button = new Button(a.getName());
-            //Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BookPage.fxml"));
-            //button.setOnAction();
+            button.setOnAction(e -> {
+                try {
+                    openAuthorProfile(a);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
             list.getItems().add(button);
         }
         list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
@@ -327,7 +285,7 @@ public class ReaderHomePageController {
 
     public void handleQuoteList(){
         ListView<String> list = new ListView<>();
-        for(String s : quotes) {
+        for(String s : user.getQuotes()) {
             list.getItems().add(s);
         }
         list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
@@ -342,7 +300,7 @@ public class ReaderHomePageController {
     }
 
     public void followAuthor(Author a){
-        if(!followedAuthors.contains(a)) followedAuthors.add(a);
+        if(!user.getFollowedAuthors().contains(a)) user.getFollowedAuthors().add(a);
     }
 
     public void searchBook(){
@@ -365,5 +323,9 @@ public class ReaderHomePageController {
 
     public void openBookPage(Book b) throws IOException {
         BookPageController bp = new BookPageController(b, user);
+    }
+
+    public void openAuthorProfile(Author a) throws IOException {
+        AuthorsProfileController ap = new AuthorsProfileController(a, user);
     }
 }

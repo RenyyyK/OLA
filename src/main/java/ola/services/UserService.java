@@ -15,13 +15,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class UserService {
 
-    private static List<User> users;
+    private static List<User> users = new ArrayList<User>();
     private static final Path USERS_PATH = FileSystemService.getPathToFile("resources", "users.json");
+    private static final String p = "resources/user.json";
 
     public static void loadUsersFromFile() throws IOException {
 
@@ -31,13 +33,20 @@ public class UserService {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {
-        });
+        try {
+            users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {});
+        }catch(Exception e){ System.out.println(e.getMessage());}
     }
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         users.add(new User(username, encodePassword(username, password), role));
+        persistUsers();
+    }
+
+    public static void addUser(String username, String password, String role, String fullName) throws UsernameAlreadyExistsException {
+        checkUserDoesNotAlreadyExist(username);
+        users.add(new User(username, encodePassword(username, password), role, fullName));
         persistUsers();
     }
 
