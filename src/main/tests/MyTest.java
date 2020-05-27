@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MyTest {
+public class MyTest extends TestCase{
 
     @Test
     public void firstTest() {
@@ -17,6 +17,26 @@ public class MyTest {
     }
 
     @Test
+    public void chechSearchUser() {
+        User usera = new User("a", "a", "Author", "a");
+        User userr = new User("a", "a", "Reader");
+        Assert.assertTrue(usera.equals(userr));
+    }
+
+    @Test
+    public void checkSearchBook() {
+        Book book1=new Book("b1", "a");
+        Book book2=new Book("b2", "a");
+        Assert.assertTrue(book11.equlas(book2));
+    }
+
+    @Test
+    public void checkSearchAuthor() {
+        Author author1=new Author("a");
+        Author author2=new Author("b");
+        Assert.assertTrue(author1.equals(author2));
+    }
+        
     public void secondTest(){
         ArrayList<Book> list = new ArrayList<>();
         Book b1 = new Book("Reader");
@@ -53,5 +73,8 @@ public class MyTest {
         test.secondTest();
         test.thirdTest();
         test.fourthTest();
+        test.chechSearchUser();
+        test.checkSearchAuthor();
+        test.checkSearchBook();
     }
 }

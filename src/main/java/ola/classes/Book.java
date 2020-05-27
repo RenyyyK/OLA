@@ -131,7 +131,12 @@ public class Book {
         this.file = file;
     }
 
-    public boolean equals(Book b){
-        return (b.title.equals(title));
+    public boolean equals(Object b){
+        if(b instanceof Book)
+        {
+            Book book=(Book)b;
+            return (book.title.equals(title));
+        }
+        return false;
     }
 }

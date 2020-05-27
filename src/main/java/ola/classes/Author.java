@@ -45,4 +45,13 @@ public class Author {
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
     }
+
+    public boolean equals(Object a){
+        if(a instanceof Author)
+        {
+            Author author=(Author)a;
+            return (author.name.equals(name));
+        }
+         return false;
+    }
 }
