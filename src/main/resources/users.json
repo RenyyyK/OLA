@@ -8,7 +8,7 @@
   "myBooks" : [ ],
   "posts" : [ ],
   "favorites" : [ ],
-  "wantToRead" : [ ],
   "finishedBooks" : [ ],
+  "wantToRead" : [ ],
   "currentlyReading" : [ ]
 } ]

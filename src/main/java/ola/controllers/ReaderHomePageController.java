@@ -51,12 +51,24 @@ public class ReaderHomePageController {
     public ReaderHomePageController(User u) {
         user = u;
     }
+
     public void handleFavorites(){
         ListView<Button> list = new ListView<>();
         for(Book b : user.getFavorites()) {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
+
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        openBookPage(b);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
         list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
         list.setMaxSize(200, 300);
@@ -109,6 +121,17 @@ public class ReaderHomePageController {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
+
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        openBookPage(b);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
         list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
         list.setMaxSize(200, 300);
@@ -161,6 +184,17 @@ public class ReaderHomePageController {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
+
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        openBookPage(b);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
         list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
         list.setMaxSize(200, 300);
@@ -213,6 +247,17 @@ public class ReaderHomePageController {
             ImageView iw = new ImageView(b.getCover());
             Button button = new Button(b.getTitle(), iw);
             list.getItems().add(button);
+
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    try {
+                        openBookPage(b);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
         list.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
         list.setMaxSize(200, 300);
