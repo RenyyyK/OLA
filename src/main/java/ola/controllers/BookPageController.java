@@ -67,27 +67,29 @@ public class BookPageController {
         addToList.setFont(Font.font("Broadway", FontWeight.BOLD, 12));
         ChoiceBox choiceBox = new ChoiceBox();
         choiceBox.getItems().addAll("Favorites", "Currently Reading", "Want to Read", "Finished Reading");
-
-        /*if(choiceBox.getValue().equals("Favorites")){
-            if(!user.getFavorites().contains(book))
-                user.getFavorites().add(book);
-        }
-        else if(choiceBox.getValue().equals("Currently Reading")){
-            if(!user.getCurrentlyReading().contains(book))
-                user.getCurrentlyReading().add(book);
-        }
-        else if(choiceBox.getValue().equals("Want to Read")){
-            if(!user.getWantToRead().contains(book))
-                user.getWantToRead().add(book);
-        }
-        else if(choiceBox.getValue().equals("Finished Reading")){
-            if(!user.getFinishedBooks().contains(book))
-                user.getFinishedBooks().add(book);
-        }*/
+        Button add = new Button("Add to List");
+        add.setOnAction(e -> {
+            if(choiceBox.getValue().equals("Favorites")){
+                if(!user.getFavorites().contains(book))
+                    user.getFavorites().add(book);
+            }
+            else if(choiceBox.getValue().equals("Currently Reading")){
+                if(!user.getCurrentlyReading().contains(book))
+                    user.getCurrentlyReading().add(book);
+            }
+            else if(choiceBox.getValue().equals("Want to Read")){
+                if(!user.getWantToRead().contains(book))
+                    user.getWantToRead().add(book);
+            }
+            else if(choiceBox.getValue().equals("Finished Reading")){
+                if(!user.getFinishedBooks().contains(book))
+                    user.getFinishedBooks().add(book);
+            }
+        });
 
         VBox left = new VBox(img, title, author, description);
         HBox bottom = new HBox(read, download);
-        VBox right = new VBox(addToList, choiceBox, c, comments, addComment);
+        VBox right = new VBox(addToList, choiceBox, add, c, comments, addComment);
         right.setSpacing(10);
         left.setSpacing(20);
         bottom.setSpacing(10);

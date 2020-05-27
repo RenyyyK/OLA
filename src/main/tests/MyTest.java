@@ -1,8 +1,16 @@
-import ola.controllers.BookPageController;
+import javafx.scene.text.Text;
+import ola.classes.Author;
+import ola.classes.Book;
+import ola.controllers.ReaderHomePageController;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class MyTest {
+
     @Test
     public void firstTest() {
         Assert.assertTrue(true);
@@ -10,65 +18,40 @@ public class MyTest {
 
     @Test
     public void secondTest(){
-        BookPageController page;
-
-
-        /*int port = 8818;
-        Connection con;
-        String url = "jdbc:mysql://localhost:3306/travel-map";
-        con= (Connection) DriverManager.getConnection(url, "root", "TravelMap");
-        Server server = new Server(port,con);
-        server.start();
-
-        Client client = new Client( "localhost", 8818,con);
-
-        client.addUserStatusListener((new UserStatusListener() {
-            @Override
-            public void online(String username) {
-                System.out.println("ONLINE: "+username);
-            }
-
-            @Override
-            public void offline(String username) {
-                System.out.println("OFFLINE: "+username);
-            }
-        }));
-        client.addMessageListener(new MessageListener() {
-            @Override
-            public void onMessage(String from, String text) {
-                System.out.println("Message from "+from+" --> "+text);
-            }
-        });
-        if( !client.connect()){
-            System.err.println("Connect failed");
-        } else {
-            System.out.println("Connect successful");
-            if( client.login("guest","password") ) {
-                System.out.println("Login successful");
-                client.msgSimple("jim", "Hei Salut! Sunt guest!");
-            }
-            else System.err.println("Login failed");
-        }
-
-        System.out.println("gata");
-        client.disconnect();
+        ArrayList<Book> list = new ArrayList<>();
+        Book b1 = new Book("Reader");
+        Book b2 = new Book("Home");
+        Book b3 = new Book("Good");
+        list.add(b1);
+        list.add(b2);
+        list.add(b3);
+        ReaderHomePageController tester = new ReaderHomePageController();
+        assertEquals(true, tester.containsBook(list, "Good"), "List must contain Good");
 
     }
 
     @Test
-    public void test1() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/travel-map";
-        Connection con = (Connection) DriverManager.getConnection(url, "root", "TravelMap");
-        ResultSet transportData = (new Transport(con,1)).getAllData();
+    public void thirdTest(){
+        Book b = new Book("Vatican", new Author("Antoine"), new Text("this is a good book"));
 
-        System.out.println("Type: "+transportData.getString("type"));
-        System.out.println("Max tickets: "+transportData.getInt("max_tickets"));
-        System.out.println("Reserved tickets: "+transportData.getInt("taken_tickets"));
-        System.out.println("From: "+transportData.getString("departure_city"));
-        System.out.println("To: "+transportData.getString("destination_city"));
-        System.out.println("Departure date, hour: "+transportData.getTimestamp("departure"));
-        System.out.println("Arrival date, hour: "+transportData.getTimestamp("arrival"));
-        System.out.println("Price: "+transportData.getDouble("price"));*/
+        assertEquals("Vatican", b.getTitle(), "Title should be Vatican");
+        assertEquals("Antoine", b.getAuthor().getName(), "Author's name should be Antoine");
+        assertEquals("this is a good book", b.getDescription(), "Description should be >this is a good book<");
+    }
 
+    @Test
+    public void fourthTest(){
+        Author a = new Author("Helen");
+        a.addBook(new Book("Flower"));
+
+        assertEquals(true, a.getBooks().contains(new Book("Flower")), "Author should have a book >Flower<");
+
+    }
+
+    public static void main(String[] args) {
+        MyTest test = new MyTest();
+        test.secondTest();
+        test.thirdTest();
+        test.fourthTest();
     }
 }
