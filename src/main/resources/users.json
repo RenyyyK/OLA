@@ -1,14 +1,14 @@
 [ {
-  "username" : "a",
-  "password" : "��`\u000E�����)\b\u001FT\u0017�˽+���'�\\��~'Ki\u0000��BG^\u00150OY�B�&\nf\u001B]��&tdY���� \u0006���",
-  "role" : "Author",
-  "name" : "a",
+  "username" : "reader",
+  "password" : "��z�u��\u001F�����\u000BdZ\u0000/��x��Y)[�\t\n����hN�\u001Cy�<�-`�q)�KK��d(��\u0003�q�{��",
+  "role" : "Reader",
+  "name" : null,
   "followedAuthors" : [ ],
   "quotes" : [ ],
   "myBooks" : [ ],
   "posts" : [ ],
-  "favorites" : [ ],
   "finishedBooks" : [ ],
+  "favorites" : [ ],
   "wantToRead" : [ ],
   "currentlyReading" : [ ]
 } ]
