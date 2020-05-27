@@ -1,7 +1,9 @@
 import javafx.scene.text.Text;
+import junit.framework.TestCase;
 import ola.classes.Author;
 import ola.classes.Book;
 import ola.controllers.ReaderHomePageController;
+import ola.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MyTest extends TestCase{
+public class MyTest extends TestCase {
 
     @Test
     public void firstTest() {
@@ -25,9 +27,9 @@ public class MyTest extends TestCase{
 
     @Test
     public void checkSearchBook() {
-        Book book1=new Book("b1", "a");
-        Book book2=new Book("b2", "a");
-        Assert.assertTrue(book11.equlas(book2));
+        Book book1=new Book("b1", new Author("a"));
+        Book book2=new Book("b2", new Author("a"));
+        Assert.assertTrue(book1.equals(book2));
     }
 
     @Test
@@ -46,7 +48,7 @@ public class MyTest extends TestCase{
         list.add(b2);
         list.add(b3);
         ReaderHomePageController tester = new ReaderHomePageController();
-        assertEquals(true, tester.containsBook(list, "Good"), "List must contain Good");
+        assertEquals(tester.containsBook(list, "Good"), "List must contain Good");
 
     }
 
@@ -64,17 +66,7 @@ public class MyTest extends TestCase{
         Author a = new Author("Helen");
         a.addBook(new Book("Flower"));
 
-        assertEquals(true, a.getBooks().contains(new Book("Flower")), "Author should have a book >Flower<");
+        assertEquals(a.getBooks().contains(new Book("Flower")), "Author should have a book Flower");
 
-    }
-
-    public static void main(String[] args) {
-        MyTest test = new MyTest();
-        test.secondTest();
-        test.thirdTest();
-        test.fourthTest();
-        test.chechSearchUser();
-        test.checkSearchAuthor();
-        test.checkSearchBook();
     }
 }
