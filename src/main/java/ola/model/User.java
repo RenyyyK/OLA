@@ -98,8 +98,8 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public boolean equals(Object o) {
+    //@Override
+    /*public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -108,6 +108,16 @@ public class User {
         if (!username.equals(user.username)) return false;
         if (!password.equals(user.password)) return false;
         return role.equals(user.role);
+    }*/
+    @Override
+    public boolean equals(Object u){
+        if(u instanceof User)
+        {
+            User user=(User)u;
+            return (user.username.equals(username) && user.password.equals(password) && user.role.equals(role) && user.name.equals(name));
+
+        }
+        return false;
     }
 
     @Override

@@ -2,73 +2,37 @@ import ola.controllers.BookPageController;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MyTest {
+public class MyTest extends TestCase{
     @Test
     public void firstTest() {
         Assert.assertTrue(true);
     }
 
     @Test
-    public void secondTest(){
-        BookPageController page;
-
-
-        /*int port = 8818;
-        Connection con;
-        String url = "jdbc:mysql://localhost:3306/travel-map";
-        con= (Connection) DriverManager.getConnection(url, "root", "TravelMap");
-        Server server = new Server(port,con);
-        server.start();
-
-        Client client = new Client( "localhost", 8818,con);
-
-        client.addUserStatusListener((new UserStatusListener() {
-            @Override
-            public void online(String username) {
-                System.out.println("ONLINE: "+username);
-            }
-
-            @Override
-            public void offline(String username) {
-                System.out.println("OFFLINE: "+username);
-            }
-        }));
-        client.addMessageListener(new MessageListener() {
-            @Override
-            public void onMessage(String from, String text) {
-                System.out.println("Message from "+from+" --> "+text);
-            }
-        });
-        if( !client.connect()){
-            System.err.println("Connect failed");
-        } else {
-            System.out.println("Connect successful");
-            if( client.login("guest","password") ) {
-                System.out.println("Login successful");
-                client.msgSimple("jim", "Hei Salut! Sunt guest!");
-            }
-            else System.err.println("Login failed");
-        }
-
-        System.out.println("gata");
-        client.disconnect();
-
+    public void chechSearchUser() {
+        User usera = new User("a", "a", "Author", "a");
+        User userr = new User("a", "a", "Reader");
+        Assert.assertTrue(usera.equals(userr));
     }
 
     @Test
-    public void test1() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/travel-map";
-        Connection con = (Connection) DriverManager.getConnection(url, "root", "TravelMap");
-        ResultSet transportData = (new Transport(con,1)).getAllData();
+    public void checkSearchBook() {
+        Book book1=new Book("b1", "a");
+        Book book2=new Book("b2", "a");
+        Assert.assertTrue(book11.equlas(book2));
+    }
 
-        System.out.println("Type: "+transportData.getString("type"));
-        System.out.println("Max tickets: "+transportData.getInt("max_tickets"));
-        System.out.println("Reserved tickets: "+transportData.getInt("taken_tickets"));
-        System.out.println("From: "+transportData.getString("departure_city"));
-        System.out.println("To: "+transportData.getString("destination_city"));
-        System.out.println("Departure date, hour: "+transportData.getTimestamp("departure"));
-        System.out.println("Arrival date, hour: "+transportData.getTimestamp("arrival"));
-        System.out.println("Price: "+transportData.getDouble("price"));*/
-
+    @Test
+    public void checkSearchAuthor() {
+        Author author1=new Author("a");
+        Author author2=new Author("b");
+        Assert.assertTrue(author1.equals(author2));
+    }
+    public static void main(String []args)
+    {
+        MyTest test =new MyTest();
+        test.chechSearchUser();
+        test.checkSearchAuthor();
+        test.checkSearchBook();
     }
 }
