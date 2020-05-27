@@ -81,8 +81,8 @@ public class BookPageController {
                 user.getWantToRead().add(book);
         }
         else if(choiceBox.getValue().equals("Finished Reading")){
-            if(!user.GetFinishedReading().contains(book))
-                user.GetFinishedReading().add(book);
+            if(!user.getFinishedBooks().contains(book))
+                user.getFinishedBooks().add(book);
         }*/
 
         VBox left = new VBox(img, title, author, description);
@@ -119,7 +119,7 @@ public class BookPageController {
         author.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                AuthorsProfileController a = new AuthorsProfileController(user, book.getAuthor());
+                AuthorsProfileController a = new AuthorsProfileController(book.getAuthor(), user);
                 bookStage.close();
             }
         });

@@ -10,16 +10,53 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private String name;
 
-    private ArrayList<Book> Favorites;
-    private ArrayList<Book> CurrentlyReading;
-    private ArrayList<Book> WantToRead;
-    private ArrayList<Book> FinishedBooks;
-    private ArrayList<Author> followedAuthors;
-    private ArrayList<String> quotes;
+    public String getName() {
+        return name;
+    }
 
-    private ArrayList<Book> myBooks;
-    private ArrayList<String> posts;
+    public ArrayList<Book> getFavorites() {
+        return Favorites;
+    }
+
+    public ArrayList<Book> getCurrentlyReading() {
+        return CurrentlyReading;
+    }
+
+    public ArrayList<Book> getWantToRead() {
+        return WantToRead;
+    }
+
+    public ArrayList<Book> getFinishedBooks() {
+        return FinishedBooks;
+    }
+
+    public ArrayList<Author> getFollowedAuthors() {
+        return followedAuthors;
+    }
+
+    public ArrayList<String> getQuotes() {
+        return quotes;
+    }
+
+    public ArrayList<Book> getMyBooks() {
+        return myBooks;
+    }
+
+    public ArrayList<String> getPosts() {
+        return posts;
+    }
+
+    private ArrayList<Book> Favorites = new ArrayList<>();
+    private ArrayList<Book> CurrentlyReading = new ArrayList<>();
+    private ArrayList<Book> WantToRead = new ArrayList<>();
+    private ArrayList<Book> FinishedBooks = new ArrayList<>();
+    private ArrayList<Author> followedAuthors = new ArrayList<>();
+    private ArrayList<String> quotes = new ArrayList<>();
+
+    private ArrayList<Book> myBooks = new ArrayList<>();
+    private ArrayList<String> posts = new ArrayList<>();
 
     public User() {
     }
@@ -28,6 +65,13 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String username, String password, String role, String name) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.name = name;
     }
 
     public String getUsername() {

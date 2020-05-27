@@ -26,30 +26,24 @@ import java.util.ArrayList;
 
 
 public class AuthorHomePageController extends ReaderHomePageController{
-    ArrayList<Book> myBooks;
-    ArrayList<String> posts;
     File selectedFile;
     File selectedImage;
     Book newBook;
 
     public AuthorHomePageController() {
         super();
-        myBooks = new ArrayList<>();
-        posts = new ArrayList<>();
     }
 
     public AuthorHomePageController(User u) {
         super(u);
-        myBooks = new ArrayList<>();
-        posts = new ArrayList<>();
     }
 
     public void handleBooks(){
         ListView<Button> list = new ListView<>();
-        for(Book b : myBooks) {
-            //ImageView iw = new ImageView(b.getCover());
+        for(Book b : user.getMyBooks()) {
+            ImageView iw = new ImageView(b.getCover());
             String s = b.getTitle();
-            Button button = new Button(s);
+            Button button = new Button(s, iw);
             list.getItems().add(button);
 
             button.setOnAction(new EventHandler<ActionEvent>() {
@@ -127,7 +121,7 @@ public class AuthorHomePageController extends ReaderHomePageController{
             //}
             ok.setOnAction(event -> {
                 newBook = new Book(addTitle.getText(), new Author(addAuthor.getText()), new Text(addDescription.getText()), selectedFile);
-                myBooks.add(newBook);
+                user.getMyBooks().add(newBook);
                 books.close();
                 handleBooks();
             });
@@ -142,7 +136,7 @@ public class AuthorHomePageController extends ReaderHomePageController{
             TextField title = new TextField();
             Button ok = new Button("Delete Book");
             ok.setOnAction(event -> {
-               int pos = containsBook(myBooks, title.getText());
+               int pos = containsBook(user.getMyBooks(), title.getText());
                 if(pos == -1){
                     Text error = new Text("No such book!");
                     HBox noBox = new HBox(error);
@@ -152,7 +146,7 @@ public class AuthorHomePageController extends ReaderHomePageController{
                     noStage.show();
                 }
                 else{
-                    myBooks.remove(pos);
+                    user.getMyBooks().remove(pos);
                     books.close();
                     handleBooks();
                 }
@@ -170,7 +164,7 @@ public class AuthorHomePageController extends ReaderHomePageController{
 
     public void handlePosts(){
         ListView<String> list = new ListView<>();
-        for(String s : posts) {
+        for(String s : user.getPosts()) {
             String p = "->" + s;
             list.getItems().add(p);
         }
@@ -197,7 +191,7 @@ public class AuthorHomePageController extends ReaderHomePageController{
             Button ok = new Button("Add Post");
 
             ok.setOnAction(event -> {
-                posts.add(post.getText());
+                user.getPosts().add(post.getText());
                 postStage.close();
                 handlePosts();
             });

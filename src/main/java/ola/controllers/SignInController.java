@@ -20,6 +20,7 @@ import java.io.IOException;
 
 public class SignInController {
     Stage stage = Main.getStage();
+    static User user;
 
     @FXML
     private Text SignInMessage;
@@ -31,14 +32,14 @@ public class SignInController {
     @FXML
     public void handleSignInAction() {
         try {
-            User u = UserService.searchUser(usernameField.getText(), passwordField.getText());
+            user = UserService.searchUser(usernameField.getText(), passwordField.getText());
             SignInMessage.setText("Sign In Successful!");
 
             stage = Main.getStage();
             stage.setTitle("Home Page");
 
             Parent root;
-            String r = u.getRole();
+            String r = user.getRole();
 
             if(r.equals("Author")) {
                 root = FXMLLoader.load(getClass().getClassLoader().getResource("authorHomePage.fxml"));
@@ -68,5 +69,9 @@ public class SignInController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static User getUser(){
+        return user;
     }
 }

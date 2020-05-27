@@ -22,7 +22,7 @@ public class AuthorsProfileController {
     Stage profile = new Stage();
     User user;
 
-    public AuthorsProfileController(User u, Author a){
+    public AuthorsProfileController(Author a, User u){
         user = u;
         r = new ReaderHomePageController(user);
         author = a;
